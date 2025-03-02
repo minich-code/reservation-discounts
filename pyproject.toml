@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling", "setuptools>=64", "wheel"]
+build-backend = "hatchling.build"
+
+[project]
+name = "reservation_discounts"
+version = "0.0.1"
+description = "A project to provide discounts for guests who make hotel reservations."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    { name = "Western", email = "minichworks@gmail.com"}
+]
+keywords = ["hotel discounts", "machine-learning", "guest reservations", "pricing strategy"]
+
+dependencies = [
+    "ensure",
+    "flask",
+    "Flask-Cors",
+    "joblib",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pymongo",
+    "pyYAML",
+    "scikit-learn",
+    "python-json-logger",
+    "seaborn",
+    "streamlit",
+    "types-PyYAML",
+    "python-box",
+    "ydata-profiling",
+    "pydantic",
+    "pydantic-settings",
+    "dvc",
+    "wandb",
+    "apache-airflow",
+    "python-dotenv",
+    "apache-airflow-providers-mongo",
+    "fastapi"
+]
+
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "pytest",
+]
+
+[project.scripts]
+reservation_discounts = "reservation_discounts.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]  # Important for finding packages
+
+[tool.mypy]
+plugins = [
+    "pydantic.mypy",
+    "pydantic.v1.mypy",
+]
