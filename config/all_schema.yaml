@@ -1,0 +1,144 @@
+
+
+is_canceled:
+  type: integer
+  constraints:
+    min: 0
+    max: 1
+
+lead_time:
+  type: integer
+  constraints:
+    min: 0
+    max: 700
+
+booking_changes:
+  type: integer
+  constraints:
+    min: 0
+    max: 5
+
+adr:
+  type: float
+  constraints:
+    min: 0.5
+    max: 400
+
+required_car_parking_spaces:
+  type: integer
+  constraints:
+    min: 0
+    max: 2
+
+total_of_special_requests:
+  type: integer
+  constraints:
+    min: 0
+    max: 5
+
+total_booking_days:
+  type: integer
+  constraints:
+    min: 0
+    max: 13
+
+total_guests:
+  type: float
+  constraints:
+    min: 1.0
+    max: 4.0
+
+hotel:
+  type: string
+  constraints:
+    enum:
+      - 'Resort Hotel' 
+      - 'City Hotel'
+
+meal:
+  type: string
+  constraints:
+    enum:
+      - 'BB' 
+      - 'FB' 
+      - 'HB' 
+      - 'SC' 
+      - 'Undefined'
+
+market_segment:
+  type: string
+  constraints:
+    enum:
+      - 'Direct' 
+      - 'Corporate' 
+      - 'Online TA' 
+      - 'Offline TA/TO' 
+      - 'Complementary' 
+      - 'Groups'
+      - 'Undefined' 
+      - 'Aviation'
+
+distribution_channel:
+  type: string
+  constraints:
+    enum:
+      - 'Direct' 
+      - 'Corporate' 
+      - 'TA/TO' 
+      - 'Undefined' 
+      - 'GDS'
+
+reserved_room_type:
+  type: string
+  constraints:
+    enum:
+      - 'A' 
+      - 'B' 
+      - 'C' 
+      - 'D' 
+      - 'E' 
+      - 'F' 
+      - 'G'
+      - 'H' 
+      - 'L' 
+
+assigned_room_type:
+  type: string
+  constraints:
+    enum:
+      - 'C' 
+      - 'A' 
+      - 'D' 
+      - 'E' 
+      - 'G' 
+      - 'F' 
+      - 'I' 
+      - 'B' 
+      - 'H' 
+      - 'L' 
+      - 'K'
+
+deposit_type:
+  type: string
+  constraints:
+    enum:
+      - 'No Deposit'
+      - 'Refundable'
+      - 'Non Refund'
+
+customer_type:
+  type: string
+  constraints:
+    enum:
+      - 'Transient' 
+      - 'Contract' 
+      - 'Transient-Party' 
+      - 'Group'
+
+reservation_status:
+  type: string
+  constraints:
+    enum:
+      - 'Canceled' 
+      - 'Check-Out' 
+      - 'No-Show' 

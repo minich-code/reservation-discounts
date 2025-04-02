@@ -175,3 +175,5 @@ disvenv/
 
 # Data loader 
 notebooks/restaurant_data_loader.ipynb
+artifacts/
+.qodo
