@@ -1,0 +1,28 @@
+
+artifacts_root: artifacts 
+
+data_drift:
+  root_dir: artifacts/data_drift
+  data_path: artifacts/data_validation/hotel_cleaned_data.parquet
+  random_state: 112
+  target_col: is_canceled
+  numerical_cols:
+    - 'lead_time'
+    - 'booking_changes'
+    - 'adr'
+    - 'required_car_parking_spaces'
+    - 'total_of_special_requests'
+    - 'total_booking_days'
+    - 'total_guests'
+  categorical_cols:
+    - 'hotel'
+    - 'meal'
+    - 'market_segment'
+    - 'distribution_channel'
+    - 'reserved_room_type'
+    - 'assigned_room_type'
+    - 'deposit_type'
+    - 'customer_type'
+    - 'reservation_status'
+  
+  

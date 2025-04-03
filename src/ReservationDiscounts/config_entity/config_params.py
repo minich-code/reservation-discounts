@@ -1,6 +1,8 @@
 
 
 from dataclasses import dataclass
+from pathlib import Path
+
 
 # Data Ingestion Config
 @dataclass
@@ -20,3 +22,14 @@ class DataValidationConfig:
     all_schema: dict
     validated_data: str
     profile_report_name: str
+
+
+# Data Drift Config
+@dataclass
+class DataDriftConfig:
+    root_dir: Path
+    data_path: Path
+    random_state: int
+    target_col: str
+    numerical_cols: list
+    categorical_cols: list

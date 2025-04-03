@@ -38,6 +38,7 @@ dependencies = [
     "python-dotenv",
     "apache-airflow-providers-mongo",
     "fastapi"
+    "evidently"
 ]
 
 [project.optional-dependencies]

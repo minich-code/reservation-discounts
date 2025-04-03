@@ -6,9 +6,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 from src.ReservationDiscounts.exception import CustomException
 from src.ReservationDiscounts.logger import logger
-from src.ReservationDiscounts.constants import DATA_INGESTION_CONFIG_FILEPATH, DATA_VALIDATION_CONFIG_FILEPATH
+from src.ReservationDiscounts.constants import *
 from src.ReservationDiscounts.utils.commons import read_yaml, create_directories
-from src.ReservationDiscounts.config_entity.config_params import DataIngestionConfig, DataValidationConfig
+from src.ReservationDiscounts.config_entity.config_params import (DataIngestionConfig, DataValidationConfig, DataDriftConfig)
 load_dotenv()
 
 
@@ -16,7 +16,8 @@ class ConfigurationManager:
     def __init__(
             self, 
             data_ingestion_config: str = DATA_INGESTION_CONFIG_FILEPATH, 
-            data_validation_config: str = DATA_VALIDATION_CONFIG_FILEPATH
+            data_validation_config: str = DATA_VALIDATION_CONFIG_FILEPATH,
+            data_drift_config: str = DATA_DRIFT_CONFIG_FILEPATH, 
             
             
         ):
@@ -26,10 +27,12 @@ class ConfigurationManager:
             
             self.ingestion_config = read_yaml(data_ingestion_config)
             self.data_val_config = read_yaml(data_validation_config)
+            self.data_drift = read_yaml(data_drift_config)
             
             
             create_directories([self.ingestion_config['artifacts_root']])
             create_directories([self.data_val_config['artifacts_root']])
+            create_directories([self.data_drift['artifacts_root']])
             
             
             logger.info("Configuration directories created successfully.")
@@ -81,4 +84,24 @@ class ConfigurationManager:
         except Exception as e:
             logger.exception(f"Error getting Data Validation config: {e}")
             raise CustomException(e, sys)
+        
+# ------------ Data Drift Configuration Manager -------------------------
+    def get_data_drift_config(self) -> DataDriftConfig:
+        try:
+            drift_config = self.data_drift['data_drift']
+            create_directories([drift_config['root_dir']])
+
+            return DataDriftConfig(
+                root_dir = drift_config['root_dir'],
+                data_path = drift_config['data_path'],
+                random_state = drift_config['random_state'],
+                target_col = drift_config['target_col'],
+                numerical_cols = drift_config['numerical_cols'],
+                categorical_cols = drift_config['categorical_cols']
+            )
+
+        except Exception as e:
+            logger.exception(f"Error getting the Data Drift Config")
+            raise CustomException(e, sys)
+
 
