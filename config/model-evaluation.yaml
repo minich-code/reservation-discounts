@@ -1,0 +1,13 @@
+
+
+artifacts_root: artifacts 
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  val_features: artifacts/data_transformation/transformed_data/X_val_transformed.parquet
+  val_targets: artifacts/data_drift/split_data/y_val.parquet
+  model_path: artifacts/model_trainer/hotel_discount_model_20250405_003240.joblib
+  project_name: hotel-discount
+  random_state: 42
+  threshold: 0.65
+

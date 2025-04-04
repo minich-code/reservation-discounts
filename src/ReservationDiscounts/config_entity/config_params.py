@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import List
 
 
 # Data Ingestion Config
@@ -33,3 +34,17 @@ class DataDriftConfig:
     target_col: str
     numerical_cols: list
     categorical_cols: list
+
+# Data Transformation Config
+@dataclass
+class DataTransformationConfig:
+    root_dir: Path
+    training_features: Path
+    test_features: Path
+    validation_features: Path
+    training_target: Path
+    test_target: Path
+    validation_target: Path
+    numerical_cols: List[str]
+    categorical_cols: List[str]
+

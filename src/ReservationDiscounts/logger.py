@@ -16,7 +16,7 @@ FORMATTER_JSON = 'json'
 FORMATTER_DETAILED = 'detailed'
 DEFAULT_MAX_BYTES = 10 * 1024 * 1024  # 10MB
 DEFAULT_BACKUP_COUNT = 20
-DEFAULT_LOGGER_NAME = 'LeadScoring'
+DEFAULT_LOGGER_NAME = 'ReservationDiscounts'
 
 
 class LoggerConfigurator:

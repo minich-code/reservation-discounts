@@ -8,7 +8,8 @@ from src.ReservationDiscounts.exception import CustomException
 from src.ReservationDiscounts.logger import logger
 from src.ReservationDiscounts.constants import *
 from src.ReservationDiscounts.utils.commons import read_yaml, create_directories
-from src.ReservationDiscounts.config_entity.config_params import (DataIngestionConfig, DataValidationConfig, DataDriftConfig)
+from src.ReservationDiscounts.config_entity.config_params import (DataIngestionConfig, DataValidationConfig, DataDriftConfig,
+                                                                   DataTransformationConfig)
 load_dotenv()
 
 
@@ -17,7 +18,8 @@ class ConfigurationManager:
             self, 
             data_ingestion_config: str = DATA_INGESTION_CONFIG_FILEPATH, 
             data_validation_config: str = DATA_VALIDATION_CONFIG_FILEPATH,
-            data_drift_config: str = DATA_DRIFT_CONFIG_FILEPATH, 
+            data_drift_config: str = DATA_DRIFT_CONFIG_FILEPATH,
+            data_transformation_config: str = DATA_TRANSFORMATION_CONFIG_FILEPATH 
             
             
         ):
@@ -28,11 +30,13 @@ class ConfigurationManager:
             self.ingestion_config = read_yaml(data_ingestion_config)
             self.data_val_config = read_yaml(data_validation_config)
             self.data_drift = read_yaml(data_drift_config)
+            self.preprocessing_config = read_yaml(data_transformation_config)
             
             
             create_directories([self.ingestion_config['artifacts_root']])
             create_directories([self.data_val_config['artifacts_root']])
             create_directories([self.data_drift['artifacts_root']])
+            create_directories([self.preprocessing_config['artifacts_root']])
             
             
             logger.info("Configuration directories created successfully.")
@@ -102,6 +106,26 @@ class ConfigurationManager:
 
         except Exception as e:
             logger.exception(f"Error getting the Data Drift Config")
+            raise CustomException(e, sys)
+        
+# ------------ Data Transformation Configuration Manager------------------------
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        try:
+            transformation_config = self.preprocessing_config['data_transformation']
+            create_directories([transformation_config['root_dir']])
+
+            return DataTransformationConfig(
+                root_dir = Path(transformation_config['root_dir']),
+                training_features = Path(transformation_config['training_features']),
+                test_features = Path(transformation_config['test_features']),
+                validation_features = Path(transformation_config['validation_features']),
+                training_target = Path(transformation_config['training_target']),
+                test_target = Path(transformation_config['test_target']),
+                validation_target = Path(transformation_config['validation_target']),
+                numerical_cols = transformation_config['numerical_cols'],
+                categorical_cols = transformation_config['categorical_cols']
+            )
+        except Exception as e:
             raise CustomException(e, sys)
 
 

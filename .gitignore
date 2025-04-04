@@ -177,3 +177,5 @@ disvenv/
 notebooks/restaurant_data_loader.ipynb
 artifacts/
 .qodo
+
+wandb/

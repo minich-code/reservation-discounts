@@ -1,0 +1,32 @@
+
+
+artifacts_root: artifacts 
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  training_features: artifacts/data_drift/split_data/X_train.parquet
+  test_features: artifacts/data_drift/split_data/X_test.parquet
+  validation_features: artifacts/data_drift/split_data/X_val.parquet
+  training_target: artifacts/data_drift/split_data/y_train.parquet
+  test_target: artifacts/data_drift/split_data/y_test.parquet
+  validation_target: artifacts/data_drift/split_data/y_val.parquet
+  numerical_cols:
+    - 'lead_time'
+    - 'booking_changes'
+    - 'adr'
+    - 'required_car_parking_spaces'
+    - 'total_of_special_requests'
+    - 'total_booking_days'
+    - 'total_guests'
+  categorical_cols:
+    - 'hotel'
+    - 'meal'
+    - 'market_segment'
+    - 'distribution_channel'
+    - 'reserved_room_type'
+    - 'assigned_room_type'
+    - 'deposit_type'
+    - 'customer_type'
+    - 'reservation_status'
+  
+  

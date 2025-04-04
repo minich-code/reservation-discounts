@@ -1,0 +1,13 @@
+
+
+
+artifacts_root: artifacts 
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  train_features: artifacts/data_transformation/transformed_data/X_train_transformed.parquet
+  train_targets: artifacts/data_drift/split_data/y_train.parquet
+  model_name: hotel_discount_model.joblib
+  project_name: hotel-discount
+  random_state: 112
+  number_of_splits: 5
